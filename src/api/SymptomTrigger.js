@@ -16,4 +16,17 @@ const addSymptomTrigger = (payload) =>
       .catch(reject);
   });
 
-export default addSymptomTrigger;
+const deleteSymptomTrigger = (symptomTriggerId) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/symptom-triggers/${symptomTriggerId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then(resolve)
+      .catch(reject);
+  });
+
+export { addSymptomTrigger, deleteSymptomTrigger };
