@@ -13,16 +13,18 @@ export default function DailyJournalMainPage() {
   const today = new Date();
   console.warn(today);
   const month = today.getUTCMonth();
+  console.warn(month);
   const year = today.getUTCFullYear();
+
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   const getDailyJournals = () => {
-    getAllDailyJournalsByMonthYear(user.uid, year, month).then(setDailyJournals);
+    getAllDailyJournalsByMonthYear(user.uid, year, month + 1).then(setDailyJournals);
   };
 
   useEffect(() => {
     getDailyJournals();
-  }, [user.uid, year, month]);
+  }, [user.uid]);
 
   return (
     <div className="visit-container">
@@ -33,8 +35,9 @@ export default function DailyJournalMainPage() {
           <h2>
             Looks like you haven&apos;t made any entries for {monthNames[month]} {year}.
           </h2>
+          {console.warn(user.uid)}
           <Link
-            href={`/journals/new/${user.Id}`}
+            href="/journals/new"
             passHref
             style={{
               display: 'flex',
