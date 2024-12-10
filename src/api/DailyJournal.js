@@ -11,32 +11,20 @@ const getAllDailyJournals = (uid) =>
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          resolve(Object.values(data));
-        } else {
-          resolve([]);
-        }
-      })
+      .then((data) => resolve(data))
       .catch(reject);
   });
 
 const getAllDailyJournalsByMonthYear = (uid, year, month) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/journals/user/${uid}/${year}?${month}`, {
+    fetch(`${endpoint}/journals/user/${uid}/${year}/${month}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          resolve(Object.values(data));
-        } else {
-          resolve([]);
-        }
-      })
+      .then((data) => resolve(data))
       .catch(reject);
   });
 
