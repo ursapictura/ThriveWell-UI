@@ -23,7 +23,20 @@ const getAllSymptomLogs = (uid) =>
 
 const getSingleSymptomLog = (logId) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/logs/${logId}.json`, {
+    fetch(`${endpoint}/logs/${logId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then(resolve)
+      .catch(reject);
+  });
+
+const getSymptomLogsByDate = (uid, journalYear, journalMonth, journalDay) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/logs/${uid}/date/${journalYear}/${journalMonth}/${journalDay}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +63,7 @@ const createSymptomLog = (payload) =>
 
 const updateSymptomLog = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/logs/${payload.id}.json`, {
+    fetch(`${endpoint}/logs/${payload.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -75,4 +88,4 @@ const deleteSymptomLog = (logId) =>
       .catch(reject);
   });
 
-export { getAllSymptomLogs, getSingleSymptomLog, createSymptomLog, updateSymptomLog, deleteSymptomLog };
+export { getAllSymptomLogs, getSingleSymptomLog, getSymptomLogsByDate, createSymptomLog, updateSymptomLog, deleteSymptomLog };

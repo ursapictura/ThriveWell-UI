@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../../utils/context/authContext';
 import { getAllDailyJournalsByMonthYear } from '../../api/DailyJournal';
-import DailyJournalTable from '../../components/DailyJournalTable';
+import DailyJournalCard from '../../components/DailyJournalCard';
 
 export default function DailyJournalMainPage() {
   const [dailyJournals, setDailyJournals] = useState([]);
@@ -19,7 +19,7 @@ export default function DailyJournalMainPage() {
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   const getDailyJournals = () => {
-    getAllDailyJournalsByMonthYear(user.uid, year, month + 1).then(setDailyJournals);
+    getAllDailyJournalsByMonthYear(user.uid, year, month).then(setDailyJournals);
   };
 
   useEffect(() => {
@@ -27,9 +27,9 @@ export default function DailyJournalMainPage() {
   }, [user.uid]);
 
   return (
-    <div className="visit-container">
+    <div className="journalCardsContainer">
       {dailyJournals.length > 0 ? (
-        <DailyJournalTable dailyJournals={dailyJournals} onUpdate={getDailyJournals} month={month} year={year} />
+        dailyJournals.map((journal) => <DailyJournalCard dailyJournal={journal} />)
       ) : (
         <div className="noJournalEntries">
           <h2>

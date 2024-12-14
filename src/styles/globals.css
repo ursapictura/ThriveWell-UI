@@ -13,9 +13,10 @@ a:hover {
   color: #c82ae8;
 }
 
-Navbar > a {
-  padding: 8px;
+Navbar > Link {
+  margin: 5px 10px;
 }
+  
 
 /* Loader Element */
 .loader {
@@ -320,4 +321,15 @@ Navbar > a {
 
 .noJournalEntries {
   text-align: center;
+}
+
+.journalCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  /* flex-direction: column; */
+  justify-content: center;
+  /* align-items: center; */
+  min-height: 100vh;
+  margin: 50px auto 40px auto;
 }
