@@ -30,7 +30,7 @@ const getAllDailyJournalsByMonthYear = (uid, year, month) =>
 
 const getSingleDailyJournal = (journalId) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/journals/${journalId}.json`, {
+    fetch(`${endpoint}/journals/${journalId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const createDailyJournal = (payload) =>
 
 const updateDailyJournal = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/journals/${payload.id}.json`, {
+    fetch(`${endpoint}/journals/${payload.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

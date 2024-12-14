@@ -23,7 +23,7 @@ const getAllSymptoms = (uid) =>
 
 const getSingleSymptom = (symptomId) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/symptoms/${symptomId}.json`, {
+    fetch(`${endpoint}/symptoms/${symptomId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
