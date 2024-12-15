@@ -2,6 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { getSingleDailyJournal } from '../../../api/DailyJournal';
 import { getSymptomLogsByDate } from '../../../api/SymptomLog';
 import SymptomLogCard from '../../../components/SymptomLogCard';
@@ -30,6 +31,11 @@ export default function DailyJournalDetails({ params }) {
       <div className="journalDetails">
         <h2>Entry Date: {journalDetails.date}</h2>
         <p>{journalDetails.entry}</p>
+        <Link passHref href={`/dailyJournals/edit/${journalDetails.id}`}>
+          <button className="button" type="submit">
+            Edit Entry
+          </button>
+        </Link>
       </div>
       <div className="logCardsContainer">{symptomLogs ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}</div>
     </>
