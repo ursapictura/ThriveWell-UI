@@ -28,10 +28,10 @@ export default function DailyJournalDetails({ params }) {
   return (
     <>
       <div className="journalDetails">
-        <h2>{journalDetails.date}</h2>
+        <h2>Entry Date: {journalDetails.date}</h2>
         <p>{journalDetails.entry}</p>
       </div>
-      {symptomLogs ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}
+      <div className="logCardsContainer">{symptomLogs ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}</div>
     </>
   );
 }

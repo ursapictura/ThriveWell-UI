@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Form, FloatingLabel } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../utils/context/authContext';
 import { createDailyJournal, updateDailyJournal } from '../../api/DailyJournal';
@@ -11,14 +11,14 @@ const nullEntry = {
   uid: '',
 };
 
-export default function DailyJournalForm({ journalObj }) {
+export default function DailyJournalForm({ journalObj = nullEntry }) {
   const [formInput, setFormInput] = useState(nullEntry);
   const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (journalObj.id) setFormInput(journalObj);
-  }, [journalObj, user.uid]);
+  }, [journalObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,30 +31,39 @@ export default function DailyJournalForm({ journalObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (journalObj.id) {
-      updateDailyJournal(formInput).then(() => router.push('/journals'));
+      updateDailyJournal(formInput).then(() => router.push('/dailyJournals'));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      createDailyJournal(payload).then(() => router.push('/journals'));
+      createDailyJournal(payload).then(() => router.push('/dailyJournals'));
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{journalObj.id ? 'Update' : 'Add'} Daily Journal Entry</h2>
+    <div className="formContainer">
+      <Form onSubmit={handleSubmit}>
+        <h2 className="mt-5">{journalObj.id ? 'Update' : 'Add'} Daily Journal Entry</h2>
 
-      {/* VISIT REASON INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Add Journal Entry" className="mb-3">
-        <Form.Control type="text" placeholder="Enter your journal entry here." name="entry" value={formInput.entry} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* Entry for Daily Journal  */}
+        {/* <FloatingLabel controlId="floatingInput1" label="Add Journal Entry" className="mb-3">
+          <Form.Control as="textarea" rows={5} placeholder="Enter your journal entry here." name="entry" value={formInput.entry || ''} onChange={handleChange} required />
+        </FloatingLabel> */}
+        <Form.Group className="mb-3" controlId="journalForm.ControlTextarea1">
+          <Form.Label>Daily Journal Entry</Form.Label>
+          <Form.Control as="textarea" rows={5} placeholder="Enter your journal entry here." name="entry" value={formInput.entry || ''} onChange={handleChange} required />
+        </Form.Group>
 
-      <FloatingLabel controlId="floatingInput3" label="Date" className="mb-3">
-        <Form.Control type="date" placeholder="Enter the date of the entry" name="date" value={formInput.date} onChange={handleChange} required />
-      </FloatingLabel>
-      {/* SUBMIT BUTTON  */}
-      <button className="button" type="submit">
-        {journalObj.id ? 'Update' : 'Add'} Visit
-      </button>
-    </Form>
+        {/* Date of Journal Entry  */}
+        <Form.Group className="mb-3" controlId="journalForm.ControlTextinput1">
+          <Form.Label>Date of Entry</Form.Label>
+          <Form.Control type="date" placeholder="Enter the date of the entry" name="date" value={formInput.date || ''} onChange={handleChange} required />
+        </Form.Group>
+
+        {/* SUBMIT BUTTON  */}
+        <button className="button" type="submit">
+          {journalObj.id ? 'Update' : 'Add'} Visit
+        </button>
+      </Form>
+    </div>
   );
 }
 

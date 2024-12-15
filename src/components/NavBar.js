@@ -6,7 +6,7 @@ import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
-    <Navbar collapseOnSelect expand="lg">
+    <Navbar collapseOnSelect expand="lg" className="custom-navbar">
       <Container>
         <Link passHref href="/" className="navbar-brand">
           ThriveWell
@@ -26,6 +26,11 @@ export default function NavBar() {
               Triggers
             </Link>
 
+            <Link passHref href="/dailyJournals/new">
+              <button type="submit" className="button">
+                New Journal Entry
+              </button>
+            </Link>
             <Link passHref href="/symptomLogs/new">
               <button type="submit" className="button">
                 Log a Symptom

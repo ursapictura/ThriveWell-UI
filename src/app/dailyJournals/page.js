@@ -27,31 +27,34 @@ export default function DailyJournalMainPage() {
   }, [user.uid]);
 
   return (
-    <div className="journalCardsContainer">
-      {dailyJournals.length > 0 ? (
-        dailyJournals.map((journal) => <DailyJournalCard dailyJournal={journal} />)
-      ) : (
-        <div className="noJournalEntries">
-          <h2>
-            Looks like you haven&apos;t made any entries for {monthNames[month]} {year}.
-          </h2>
-          {console.warn(user.uid)}
-          <Link
-            href="/journals/new"
-            passHref
-            style={{
-              display: 'flex',
-              width: '125px',
-              margin: 'auto',
-              textAlign: 'center',
-            }}
-          >
-            <button type="submit" className="button">
-              Add New
-            </button>
-          </Link>
-        </div>
-      )}
+    <div>
+      <h2 style={{ textAlign: 'center', marginTop: '6vh' }}>Daily Journal Entries</h2>
+      <div className="journalCardsContainer">
+        {dailyJournals.length > 0 ? (
+          dailyJournals.map((journal) => <DailyJournalCard dailyJournal={journal} />)
+        ) : (
+          <div className="noJournalEntries">
+            <h2>
+              Looks like you haven&apos;t made any entries for {monthNames[month]} {year}.
+            </h2>
+            {console.warn(user.uid)}
+            <Link
+              href="/journals/new"
+              passHref
+              style={{
+                display: 'flex',
+                width: '125px',
+                margin: 'auto',
+                textAlign: 'center',
+              }}
+            >
+              <button type="submit" className="button">
+                Add New
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

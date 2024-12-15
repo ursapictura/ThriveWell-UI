@@ -7,19 +7,20 @@ import { Card } from 'react-bootstrap';
 export default function SymptomLogCard({ logObj }) {
   return (
     <div>
-      <Card style={{ width: '30rem' }}>
+      <Card style={{ width: '20rem' }}>
         <Card.Body>
           <div className="flex">
-            <Card.Title className="post-card-link">{logObj.symptom.name}</Card.Title>
+            <Card.Title className="card-link">{logObj.symptom.name}</Card.Title>
           </div>
           <Card.Text style={{ fontWeight: '600', color: '#c82ae8' }}>Symptom Severity: {logObj.severity}</Card.Text>
 
           {
             // eslint-disable-next-line
-            logObj?.symptomTrigger.map((trigger) => (
-              <Card.Text key={trigger.id}>{trigger.name}</Card.Text>
+            logObj?.symptomTrigger.map((st) => (
+              <Card.Text key={st?.id}>{st.trigger.name}</Card.Text>
             ))
           }
+          {console.warn(logObj)}
         </Card.Body>
       </Card>
     </div>
