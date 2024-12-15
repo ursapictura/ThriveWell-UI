@@ -25,6 +25,12 @@ export default function NavBar() {
             <Link passHref href="/triggers">
               Triggers
             </Link>
+
+            <Link passHref href="/symptomLogs/new">
+              <button type="submit" className="button">
+                Log a Symptom
+              </button>
+            </Link>
           </Nav>
 
           <button className="button" type="submit" onClick={signOut}>
