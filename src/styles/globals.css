@@ -378,6 +378,11 @@ a:hover {
   margin: 30px auto;
 }
 
+.logFormContainer {
+  max-width: 600px;
+  margin: 60px auto;
+}
+
 .logCardsContainer {
   display: flex;
   flex-wrap: wrap;
