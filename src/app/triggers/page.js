@@ -20,18 +20,20 @@ export default function TriggersPage() {
     <div className="symptom-trigger-div">
       <h1>Your Triggers</h1>
       <p>These are triggers you have used in the past</p>
-      {triggers ? (
-        triggers.map((trigger) => <TriggerDiv key={trigger.id} triggerObj={trigger} onUpdate={getAllUserTriggers} />)
-      ) : (
-        <div>
-          <h4>You have not tracked any triggers. Create a SymptomLog to add new triggers to ThriveWell!</h4>
-          <Link href="/symptomLogs/new" passHref>
-            <button type="submit" className="button">
-              Log a New Symptom
-            </button>
-          </Link>
-        </div>
-      )}
+      <div style={{ marginTop: '6vh' }}>
+        {triggers ? (
+          triggers.map((trigger) => <TriggerDiv key={trigger.id} triggerObj={trigger} onUpdate={getAllUserTriggers} />)
+        ) : (
+          <>
+            <h4>You have not tracked any triggers. Create a SymptomLog to add new triggers to ThriveWell!</h4>
+            <Link href="/symptomLogs/new" passHref>
+              <button type="submit" className="button">
+                Log a New Symptom
+              </button>
+            </Link>
+          </>
+        )}
+      </div>
     </div>
   );
 }

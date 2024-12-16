@@ -13,10 +13,48 @@ a:hover {
   color: #c82ae8;
 }
 
-Navbar > Link {
+/* Navbar */
+/* Navbar Start */
+.navbar {
+  background-color: #ffffff92;
+  .nav-link{
+    color: black;
+  }
+}
+.navbar .nav-link {
+  color: black !important;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+}
+
+.navbar .nav-link.active {
+  color: #0d6efd !important; 
+  background-color: transparent !important;
+}
+
+.navbar {
+  padding:  0 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .09);
+  width: 100%;
+  @media (max-width: 400px) {
+    padding:  0;
+  }
+}
+
+.custom-navbar, .navbar-collapse {
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.navbar-nav, .me-auto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.me-auto a {
   margin: 5px 10px;
 }
-  
 
 /* Loader Element */
 .loader {
@@ -227,6 +265,7 @@ Navbar > Link {
 /* button */
 .button {
   position: relative;
+  height: 80%;
   padding: 10px 22px;
   border-radius: 6px;
   border: none;
@@ -332,4 +371,20 @@ Navbar > Link {
   /* align-items: center; */
   min-height: 100vh;
   margin: 50px auto 40px auto;
+}
+
+.formContainer, .journalDetails, .logCardsContainer {
+  width: 70%;
+  margin: 30px auto;
+}
+
+.logCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.symptom-trigger-div {
+  width: 80%;
+  margin: 6vh auto;
 }
