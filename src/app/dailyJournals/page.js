@@ -12,9 +12,7 @@ export default function DailyJournalMainPage() {
 
   const { user } = useAuth();
   const today = new Date();
-  console.warn(today);
   const month = today.getUTCMonth();
-  console.warn(month);
   const year = today.getUTCFullYear();
 
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -48,9 +46,8 @@ export default function DailyJournalMainPage() {
             <h2>
               Looks like you haven&apos;t made any entries for {monthNames[month - 1]} {year}.
             </h2>
-            {console.warn(user.uid)}
             <Link
-              href="/journals/new"
+              href="/dailyJournals/new"
               passHref
               style={{
                 display: 'flex',

@@ -3,7 +3,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getSingleDailyJournal } from '../../../api/DailyJournal';
+import { useRouter } from 'next/navigation';
+import { deleteDailyJournal, getSingleDailyJournal } from '../../../api/DailyJournal';
 import { getSymptomLogsByDate } from '../../../api/SymptomLog';
 import SymptomLogCard from '../../../components/SymptomLogCard';
 
@@ -11,6 +12,13 @@ export default function DailyJournalDetails({ params }) {
   const [journalDetails, setJournalDetails] = useState({});
   const [symptomLogs, setSymptomLogs] = useState([]);
   const { id } = params;
+  const router = useRouter();
+
+  const deleteThisDailyJournal = () => {
+    if (window.confirm(`Delete entry for ${journalDetails.date}?`)) {
+      deleteDailyJournal(id).then(() => router.push(`/dailyJournals`));
+    }
+  };
 
   useEffect(() => {
     getSingleDailyJournal(id).then(setJournalDetails);
@@ -19,11 +27,15 @@ export default function DailyJournalDetails({ params }) {
   useEffect(() => {
     const journalDate = new Date(journalDetails.date);
 
-    const journalYear = journalDate.getUTCFullYear();
-    const journalMonth = journalDate.getUTCMonth();
-    const journalDay = journalDate.getUTCDate();
+    // check that journalDate is valid
+    // eslint-disable-next-line no-restricted-globals
+    if (!isNaN(journalDate)) {
+      const journalYear = journalDate.getUTCFullYear();
+      const journalMonth = journalDate.getUTCMonth();
+      const journalDay = journalDate.getUTCDate();
 
-    getSymptomLogsByDate(journalDetails.uid, journalYear, journalMonth + 1, journalDay).then((logs) => setSymptomLogs(logs));
+      getSymptomLogsByDate(journalDetails.uid, journalYear, journalMonth + 1, journalDay).then((logs) => setSymptomLogs(logs));
+    }
   }, [journalDetails]);
 
   return (
@@ -36,8 +48,11 @@ export default function DailyJournalDetails({ params }) {
             Edit Entry
           </button>
         </Link>
+        <button className="button" type="submit" onClick={deleteThisDailyJournal}>
+          Delete Entry
+        </button>
       </div>
-      <div className="logCardsContainer">{symptomLogs ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}</div>
+      <div className="logCardsContainer">{symptomLogs.Length > 0 ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}</div>
     </>
   );
 }
