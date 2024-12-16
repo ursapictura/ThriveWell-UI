@@ -53,7 +53,7 @@ a:hover {
 }
 
 .me-auto a {
-  margin: 0 10px;
+  margin: 5px 10px;
 }
 
 /* Loader Element */
@@ -265,6 +265,7 @@ a:hover {
 /* button */
 .button {
   position: relative;
+  height: 80%;
   padding: 10px 22px;
   border-radius: 6px;
   border: none;

@@ -19,7 +19,7 @@ export default function DailyJournalCard({ dailyJournal }) {
           <div className="flex">
             <Link href={`/dailyJournals/${dailyJournal.id}`} passHref>
               <Card.Title className="post-card-link">
-                {monthNames[month - 1]} {day}, {year}
+                {monthNames[month]} {day}, {year}
               </Card.Title>
             </Link>
           </div>

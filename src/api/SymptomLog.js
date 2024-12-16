@@ -64,7 +64,7 @@ const createSymptomLog = (payload) =>
 const updateSymptomLog = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/logs/${payload.id}`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
