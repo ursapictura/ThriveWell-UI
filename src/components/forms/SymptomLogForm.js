@@ -22,6 +22,7 @@ export default function SymptomLogForm() {
   const [selectedSymptom, setSelectedSymptom] = useState(null);
   const [selectedTriggers, setSelectedTriggers] = useState([]);
   const todayUTC = new Date().toISOString().split('T')[0];
+  console.warn(todayUTC);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -39,10 +40,19 @@ export default function SymptomLogForm() {
       ...prevState,
       [name]: value,
     }));
+    console.log('SymptomId:', formInput.symptomId);
   };
+
+  // const handleSymptomChange = (selection) => {
+  //   setSelectedSymptom(selection);
+  // };
 
   const handleSymptomChange = (selection) => {
     setSelectedSymptom(selection);
+    setFormInput((prevState) => ({
+      ...prevState,
+      symptomId: selection?.value || 0, // Update symptomId based on selection
+    }));
   };
 
   const handleTriggerChange = (selections) => {
@@ -55,6 +65,7 @@ export default function SymptomLogForm() {
   // and triggers that do not exist in the "triggers" state array (and need to be created) as
   // { value: "NewTrigger", label: "NewTrigger", __isNew__: true }
   const manageLogTriggers = async (logId) => {
+    console.warn(logId);
     // Create array of promises for triggers that need to be added to log
     const addedTriggers =
       (await selectedTriggers
@@ -64,11 +75,13 @@ export default function SymptomLogForm() {
           // If trigger.value is of type string, then trigger does not yet exist and needs to be created
           // before adding it to the log
           if (typeof trigger.value === 'string') {
-            return createTrigger({ name: trigger.name }).then(({ id }) => addSymptomTrigger({ symptomSeverity: formInput.severity, symptomLogId: logId, triggerId: id }));
+            return createTrigger({ name: trigger.name }).then(({ id }) => addSymptomTrigger({ symptomSeverity: formInput.severity, symptomLogId: logId.id, triggerId: id }));
           }
           // Otherwise, trigger.value is an int corresponding to the triggerId in the db
           // and only a call to add the SymptomTrigger is necessary
-          return addSymptomTrigger({ symptomSeverity: formInput.severity, symptomLogId: logId, triggerId: trigger.value });
+          const payload = { symptomSeverity: formInput.severity, symptomLogId: logId.id, triggerId: trigger.value };
+          console.warn(payload);
+          return addSymptomTrigger(logId.id);
           // If no SymptomTriggers need to be added, set addedTriggers to an empty array (rather than undefined)
         })) || [];
 
@@ -78,13 +91,14 @@ export default function SymptomLogForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('formInput:', formInput);
     if (formInput.severity > 0) {
       createSymptomLog({
         ...formInput,
-        uid: user.id,
+        uid: user.uid,
         date: todayUTC,
       }).then(({ id }) => {
-        manageLogTriggers({ uid: user.uid, severityAverage: formInput.severity, id }).then(() => router.push(`/posts/${id}`));
+        manageLogTriggers({ id }).then(() => router.push(`/posts/${id}`));
       });
     }
   };
@@ -92,18 +106,25 @@ export default function SymptomLogForm() {
   useEffect(() => {
     getSymptoms();
     getTriggers();
-  }, [user.uid]);
+  }, [user?.uid]);
 
   return (
-    <Form onSubmit={handleSubmit} className="mt-7 w-[80%] ml-auto mr-auto">
+    <Form
+      onSubmit={(e) => {
+        console.log('Form submit triggered');
+        console.log('SymptomId:', formInput.symptomId);
+        handleSubmit(e);
+      }}
+      className="mt-7 w-[80%] ml-auto mr-auto"
+    >
       <CreatableSelect instanceId="symptomSelect" aria-label="Symptoms" name="symptoms" className="mb-3" placeholder="Select or Create the Symptom You Are Experiencing" value={selectedSymptom} isClearable onChange={handleSymptomChange} options={symptoms.map((symptom) => ({ value: symptom.id, label: symptom.name }))} required />
 
-      <Form.Select aria-label="Severity" name="severity" className="mb-3" placeholder="How Severe is the Symptom Your Are Experience?" value={formInput.severity} onChange={handleChange} style={{ color: 'gray' }} required>
+      <Form.Select aria-label="Severity" name="severity" className="mb-3" placeholder="How Severe is the Symptom Your Are Experiencing?" value={formInput.severity} onChange={handleChange} style={{ color: 'gray' }} required>
         <option value="0">How Severe is the Symptom?</option>
         <option value="1">1: Mild 😐</option>
         <option value="2">2: Moderate 😓</option>
-        <option value="2">2: Severe 😢</option>
-        <option value="2">2: Very Severe 😣</option>
+        <option value="2">3: Severe 😢</option>
+        <option value="2">4: Very Severe 😣</option>
         <option value="5">5: Unbearable 😖</option>
       </Form.Select>
 
