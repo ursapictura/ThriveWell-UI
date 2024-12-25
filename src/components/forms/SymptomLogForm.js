@@ -7,7 +7,7 @@ import { Form } from 'react-bootstrap';
 import { createTrigger, getAllTriggers } from '../../api/Trigger';
 import { addSymptomTrigger } from '../../api/SymptomTrigger';
 import { useAuth } from '../../utils/context/authContext';
-import { getAllSymptoms } from '../../api/Symptom';
+import { createSymptom, getAllSymptoms } from '../../api/Symptom';
 import { createSymptomLog } from '../../api/SymptomLog';
 
 const nullSymptomLog = {
@@ -22,7 +22,6 @@ export default function SymptomLogForm() {
   const [selectedSymptom, setSelectedSymptom] = useState(null);
   const [selectedTriggers, setSelectedTriggers] = useState([]);
   const todayUTC = new Date().toISOString().split('T')[0];
-  console.warn(todayUTC);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -34,6 +33,17 @@ export default function SymptomLogForm() {
     getAllTriggers(user.uid).then(setTriggers);
   };
 
+  const manageLogSymptom = async (selection) => {
+    if (typeof selection.value === 'string') {
+      const newSymptom = await createSymptom({ name: selection.label, uid: user.uid }); // Create a new symptom
+      setSelectedSymptom({ value: newSymptom.id, label: newSymptom.name }); // Update the state with the created symptom
+      return { id: newSymptom.id };
+    } 
+      setSelectedSymptom(selection);
+      return { id: selection.value };
+    
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -43,15 +53,11 @@ export default function SymptomLogForm() {
     console.log('SymptomId:', formInput.symptomId);
   };
 
-  // const handleSymptomChange = (selection) => {
-  //   setSelectedSymptom(selection);
-  // };
-
-  const handleSymptomChange = (selection) => {
-    setSelectedSymptom(selection);
+  const handleSymptomChange = async (selection) => {
+    const managedSymptom = await manageLogSymptom(selection);
     setFormInput((prevState) => ({
       ...prevState,
-      symptomId: selection?.value || 0, // Update symptomId based on selection
+      symptomId: managedSymptom.id, // Update symptomId based on selection
     }));
   };
 
@@ -75,13 +81,13 @@ export default function SymptomLogForm() {
           // If trigger.value is of type string, then trigger does not yet exist and needs to be created
           // before adding it to the log
           if (typeof trigger.value === 'string') {
-            return createTrigger({ name: trigger.name }).then(({ id }) => addSymptomTrigger({ symptomSeverity: formInput.severity, symptomLogId: logId.id, triggerId: id }));
+            return createTrigger({ name: trigger.label, uid: user.uid }).then(({ id }) => addSymptomTrigger({ symptomSeverity: formInput.severity, symptomLogId: logId.id, triggerId: id }));
           }
           // Otherwise, trigger.value is an int corresponding to the triggerId in the db
           // and only a call to add the SymptomTrigger is necessary
           const payload = { symptomSeverity: formInput.severity, symptomLogId: logId.id, triggerId: trigger.value };
           console.warn(payload);
-          return addSymptomTrigger(logId.id);
+          return addSymptomTrigger(payload);
           // If no SymptomTriggers need to be added, set addedTriggers to an empty array (rather than undefined)
         })) || [];
 
@@ -94,11 +100,12 @@ export default function SymptomLogForm() {
     console.log('formInput:', formInput);
     if (formInput.severity > 0) {
       createSymptomLog({
-        ...formInput,
+        severity: formInput.severity,
+        symptomId: formInput.symptomId,
         uid: user.uid,
         date: todayUTC,
       }).then(({ id }) => {
-        manageLogTriggers({ id }).then(() => router.push(`/posts/${id}`));
+        manageLogTriggers({ id }).then(() => router.push(`/dailyJournals`));
       });
     }
   };

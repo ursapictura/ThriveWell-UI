@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
 
 function Signin() {
@@ -12,8 +13,9 @@ function Signin() {
         margin: '0 auto',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
+      <Image src="/images/Logo.png" alt="logo" style={{ maxWidth: '250px', margin: ' 10px auto' }} />
+      <h1>Thrive Well</h1>
+      <p>Click the button below to sign in!</p>
       <button style={{ maxHeight: '50px' }} type="button" className="button" onClick={signIn}>
         Sign In
       </button>

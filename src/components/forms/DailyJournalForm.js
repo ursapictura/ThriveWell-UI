@@ -60,7 +60,7 @@ export default function DailyJournalForm({ journalObj = nullEntry }) {
 
         {/* SUBMIT BUTTON  */}
         <button className="button" type="submit">
-          {journalObj.id ? 'Update' : 'Add'} Visit
+          {journalObj.id ? 'Update' : 'Add'} Entry
         </button>
       </Form>
     </div>
