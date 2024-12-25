@@ -52,7 +52,7 @@ export default function DailyJournalDetails({ params }) {
           Delete Entry
         </button>
       </div>
-      <div className="logCardsContainer">{symptomLogs.Length > 0 ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}</div>
+      <div className="logCardsContainer">{symptomLogs.length > 0 ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}</div>
     </>
   );
 }
