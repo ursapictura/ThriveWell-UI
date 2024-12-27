@@ -390,6 +390,10 @@ a:hover {
 }
 
 .symptom-trigger-div {
-  width: 80%;
+  max-width: 800px;
+  min-width: 200px;
   margin: 6vh auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4vh;
 }
