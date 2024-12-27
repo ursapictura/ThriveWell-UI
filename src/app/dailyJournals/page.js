@@ -44,7 +44,7 @@ export default function DailyJournalMainPage() {
         ) : (
           <div className="noJournalEntries">
             <h2>
-              Looks like you haven&apos;t made any entries for {monthNames[month - 1]} {year}.
+              Looks like you haven&apos;t made any entries for {monthNames[month]} {year}.
             </h2>
             <Link
               href="/dailyJournals/new"
