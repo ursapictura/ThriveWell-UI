@@ -1,61 +1,78 @@
-# NextJS with Firebase Auth App Router Template
 
-[See Live Demo of this Template](https://drt-next-js-template-app-router.netlify.app/)
 
-## Topics
-- [Get Started](#get-started)
-- [Starting the Project](#starting-the-project)
-- [Deploying on Netlify](#deploying-on-netlify)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+<h1 align="center" style="font-weight: bold;">ThriveWell</h1>
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+<p align="center">
+<a href="#tech">Technologies</a>
+<a href="#started">Getting Started</a>
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+ 
+</p>
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. Run `npx eslint . --ext .js,.jsx`
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://github.com/user-attachments/assets/deae25f0-01d5-44b4-be60-7297b0f6f0ef">
+<p align="center">The ThriveWell application provides the tools needed to track daily changes in chronic health conditions and to establish patterns for those symptoms. Doctors and patients can use the daily journal and symptom logs to track symptoms and their severity every day as well as the potential environmental and physiological triggers for those symptoms.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Overtime, patients and care providers can see which triggers and most likely linked to symptom flair ups and tailor health management plans around those triggers.</p>
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
+<p align="center">
+<a href="https://github.com/ursapictura/ThriveWell-Server">📱 Visit the API Repository</a>
+</p>
 
-### Deploying on Netlify
-Netlify will automatically detect your project and prepopulate the settings, but should something go wrong and it does not, here are the commands:
+<h2 id="tech">💻 Technologies</h2>
 
-- Build Command: `npm run build`
-- Publish directory: `.next`
+- JavaScript
+- React
+- Bootstrap
+- Next.js
+- Visual Studio
 
-#### Additional Steps to Take on Netlify
-- Add Environmental Variables
-    - Any Enviromental variables you are using in your `.env` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there if you did not add them when you were deploying your site
+<h2 id="started">🚀 Getting started</h2>
 
-- Update Firebase URL Settings
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+To run this server-side of this project, you will need to clone this repo along with the server-side repo for this project. You will also need a code editor like Visual Studio.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<h3>Prerequisites</h3>
+
+Here you list all prerequisites necessary for running your project. For example:
+
+- [Visual Studio or VS Code](https://visualstudio.microsoft.com//)
+
+<h3>Cloning</h3>
+
+How to clone your project
+
+```bash
+git clone https://github.com/ursapictura/ThriveWell-UI.git
+```
+
+<h3>Starting</h3>
+
+How to start your project
+
+```bash
+cd ThriveWell-UI
+
+npm install
+
+npm i --save react-select
+
+npm run prepare
+```
+
+You'll need to run the server-side before running the client-side.
+
+You will also need to create a firebase authentication and web app connection for this application.
+
+Once you've created these, Firebase will give you the SDKs you need to add to an .env file in the application on your local machine.
+
+After you .env is setup, you can start your backend server followed by your frontend server.
+
+To run the frontend server:
+
+```bash
+npm run dev
+```
+
+<h3>Documentations that might help</h3>
+
+[📝 API Repository for this project](https://github.com/ursapictura/ThriveWell-Server)
