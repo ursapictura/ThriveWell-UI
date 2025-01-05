@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Guide() {
   return (
-    <div>
+    <div className="diets-div">
       <h1>How does ThriveWell work?</h1>
       <p>Great question! ThriveWell allows you to better manage your chronic health conditions by tracking daily symptoms and discovering ways to improve your symptom severity.</p>
 
