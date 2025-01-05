@@ -397,3 +397,9 @@ a:hover {
   flex-wrap: wrap;
   gap: 4vh;
 }
+
+.diets-div {
+    padding: 20px;
+    max-width: 900px;
+    margin: 10vh auto;
+}
