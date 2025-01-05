@@ -389,6 +389,14 @@ a:hover {
   gap: 20px;
 }
 
+.analysisContainer {
+  max-width: 1000px;
+  margin: 7vh auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .symptom-trigger-div {
   max-width: 800px;
   min-width: 200px;
@@ -396,4 +404,10 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 4vh;
+}
+
+.diets-div {
+    padding: 20px;
+    max-width: 900px;
+    margin: 10vh auto;
 }

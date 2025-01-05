@@ -43,14 +43,16 @@ export default function DailyJournalDetails({ params }) {
       <div className="journalDetails">
         <h2>Entry Date: {journalDetails.date}</h2>
         <p>{journalDetails.entry}</p>
-        <Link passHref href={`/dailyJournals/edit/${journalDetails.id}`}>
-          <button className="button" type="submit">
-            Edit Entry
+        <div style={{ display: 'flex', gap: '15px', minHeight: '55px' }}>
+          <Link passHref href={`/dailyJournals/edit/${journalDetails.id}`}>
+            <button className="button" type="submit">
+              Edit Entry
+            </button>
+          </Link>
+          <button className="button" type="submit" onClick={deleteThisDailyJournal}>
+            Delete Entry
           </button>
-        </Link>
-        <button className="button" type="submit" onClick={deleteThisDailyJournal}>
-          Delete Entry
-        </button>
+        </div>
       </div>
       <div className="logCardsContainer">{symptomLogs.length > 0 ? symptomLogs.map((log) => <SymptomLogCard key={log.id} logObj={log} />) : ''}</div>
     </>
