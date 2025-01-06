@@ -1,55 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap');
+
 body {
   background: rgb(255, 255, 255);
-  color: #5E14E4;
+  color: #7f14e4;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+}
+
+h1, h2, h3, h3, h4, h5, h6 {
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+}
+
+h1, h2 {
+  color: rgb(125, 42, 232) !important;
+  font-weight: 600 !important;
 }
 
 a {
-  text-decoration: none;
-  color: #7d2ae8;
-  font-weight: 600;
+  text-decoration: none !important;
+  color: #7d2ae8 !important;
+  font-weight: 600 !important;
 }
 
 a:hover {
-  color: #c82ae8;
+  color: #1b7e60 !important;
 }
 
 /* Navbar */
 /* Navbar Start */
 .navbar {
   background-color: #ffffff92;
-  .nav-link{
-    color: black;
+  .navbar-brand {
+    color: #7f13d8;
+    text-align: center;
+    margin: 0 auto;
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+    font-size: 22px;
+    font-weight: 700 !important;
+  }
+  .container {
+    display: flex;
+    width: 100% !important;
+    justify-content: space-evenly;
   }
 }
 .navbar .nav-link {
-  color: black !important;
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
+  color: rgb(0, 0, 0) !important;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-size: 13pt;
 }
 
 .navbar .nav-link.active {
-  color: #0d6efd !important; 
+  color: #ba0bca !important; 
   background-color: transparent !important;
 }
 
 .navbar {
   padding:  0 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, .09);
-  width: 100%;
   @media (max-width: 400px) {
     padding:  0;
   }
 }
 
 .custom-navbar, .navbar-collapse {
+  display: flex;
+  justify-content: space-evenly;
   padding: 1rem;
   border-radius: 0.25rem;
 }
 
 .navbar-nav, .me-auto {
+  align-items: center;
+}
+
+.navbar-nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; 
 }
 
 .me-auto a {
@@ -387,6 +414,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: space-evenly;
 }
 
 .analysisContainer {
@@ -410,4 +438,14 @@ a:hover {
     padding: 20px;
     max-width: 900px;
     margin: 10vh auto;
+}
+
+.card-text {
+  font-family: sans-serif;
+  font-size: 14pt;
+}
+
+.card-title {
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-size: 22pt !important;
 }

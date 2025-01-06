@@ -13,10 +13,13 @@ export default function NavBar() {
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto nav-links">
+          <Nav className="me-auto nav-link">
             {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
             <Link passHref href="/dailyJournals">
-              Journal Entries
+              Journal
+            </Link>
+            <Link passHref href="/symptomLogs">
+              Symptom Logs
             </Link>
             <Link passHref href="/symptoms">
               Symptoms
@@ -44,11 +47,11 @@ export default function NavBar() {
                 Log a Symptom
               </button>
             </Link>
-          </Nav>
 
-          <button className="button" type="submit" onClick={signOut}>
-            Sign Out
-          </button>
+            <button className="button" type="submit" onClick={signOut}>
+              Sign Out
+            </button>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
