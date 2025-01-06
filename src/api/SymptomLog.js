@@ -47,6 +47,19 @@ const getSymptomLogsByDate = (uid, journalYear, journalMonth, journalDay) =>
       .catch(reject);
   });
 
+const getSymptomLogsForLastThirtyDays = (uid) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/logs/${uid}/thirtydays`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then(resolve)
+      .catch(reject);
+  });
+
 const createSymptomLog = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/logs`, {
@@ -88,4 +101,4 @@ const deleteSymptomLog = (logId) =>
       .catch(reject);
   });
 
-export { getAllSymptomLogs, getSingleSymptomLog, getSymptomLogsByDate, createSymptomLog, updateSymptomLog, deleteSymptomLog };
+export { getAllSymptomLogs, getSingleSymptomLog, getSymptomLogsByDate, getSymptomLogsForLastThirtyDays, createSymptomLog, updateSymptomLog, deleteSymptomLog };

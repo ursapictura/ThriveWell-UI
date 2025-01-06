@@ -11,8 +11,11 @@ import SymptomLogCard from '../../../components/SymptomLogCard';
 export default function DailyJournalDetails({ params }) {
   const [journalDetails, setJournalDetails] = useState({});
   const [symptomLogs, setSymptomLogs] = useState([]);
+  const [entryDate, setEntryDate] = useState('');
   const { id } = params;
   const router = useRouter();
+
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   const deleteThisDailyJournal = () => {
     if (window.confirm(`Delete entry for ${journalDetails.date}?`)) {
@@ -34,6 +37,11 @@ export default function DailyJournalDetails({ params }) {
       const journalMonth = journalDate.getUTCMonth();
       const journalDay = journalDate.getUTCDate();
 
+      const journalWrittenMonth = monthNames[journalDate.getUTCMonth()];
+      // Update the entry date
+      setEntryDate(`${journalWrittenMonth} ${journalDay}, ${journalYear}`);
+
+      // Add 1 to journal month to account for UTC Months starting from 0 instead of 1
       getSymptomLogsByDate(journalDetails.uid, journalYear, journalMonth + 1, journalDay).then((logs) => setSymptomLogs(logs));
     }
   }, [journalDetails]);
@@ -41,9 +49,9 @@ export default function DailyJournalDetails({ params }) {
   return (
     <>
       <div className="journalDetails">
-        <h2>Entry Date: {journalDetails.date}</h2>
-        <p>{journalDetails.entry}</p>
-        <div style={{ display: 'flex', gap: '15px', minHeight: '55px' }}>
+        {entryDate && <h2>Entry Date: {entryDate}</h2>}
+        <p style={{ marginTop: '2vh' }}>{journalDetails.entry}</p>
+        <div style={{ display: 'flex', gap: '15px', minHeight: '55px', margin: '5vh 0' }}>
           <Link passHref href={`/dailyJournals/edit/${journalDetails.id}`}>
             <button className="button" type="submit">
               Edit Entry

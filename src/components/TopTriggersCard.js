@@ -9,7 +9,7 @@ export default function TopTriggersCard({ triggerObj }) {
     <Card style={{ width: '30rem' }}>
       <Card.Body>
         <div className="flex">
-          <Card.Title className="card-link" style={{ color: '#c82ae8' }}>
+          <Card.Title className="card-link" style={{ color: '#1b7e60', fontWeight: '650', fontSize: '24px' }}>
             {triggerObj.name}
           </Card.Title>
         </div>
