@@ -7,6 +7,7 @@
 <a href="#features">Features</a>
 <a href="#screenshots">Screenshots</a>
 <a href="#started">Getting Started</a>
+<a href="https://www.loom.com/share/997f576347c24c5bb7d7108d8408e3dc?sid=85e0f3b2-2f5d-49b7-a5ba-53346bcc670b">Video Demo</a>
 
  
 </p>
@@ -16,6 +17,9 @@
 
 Overtime, patients and care providers can see which triggers and most likely linked to symptom flair ups and tailor health management plans around those triggers.</p>
 
+<p align="center">
+<a href="https://www.loom.com/share/997f576347c24c5bb7d7108d8408e3dc?sid=85e0f3b2-2f5d-49b7-a5ba-53346bcc670b">📺 Application Walkthrough Video</a>
+</p>
 
 <p align="center">
 <a href="https://github.com/ursapictura/ThriveWell-Server">📱 Visit the API Repository</a>
