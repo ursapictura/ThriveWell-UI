@@ -21,7 +21,8 @@ export default function SymptomLogForm() {
   const [triggers, setTriggers] = useState([]);
   const [selectedSymptom, setSelectedSymptom] = useState(null);
   const [selectedTriggers, setSelectedTriggers] = useState([]);
-  const todayUTC = new Date().toISOString().split('T')[0];
+  // const todayUTC = new Date().toISOString().split('T')[0];
+  const today = new Date().toLocaleDateString('en-CA');
   const router = useRouter();
   const { user } = useAuth();
 
@@ -38,10 +39,9 @@ export default function SymptomLogForm() {
       const newSymptom = await createSymptom({ name: selection.label, uid: user.uid }); // Create a new symptom
       setSelectedSymptom({ value: newSymptom.id, label: newSymptom.name }); // Update the state with the created symptom
       return { id: newSymptom.id };
-    } 
-      setSelectedSymptom(selection);
-      return { id: selection.value };
-    
+    }
+    setSelectedSymptom(selection);
+    return { id: selection.value };
   };
 
   const handleChange = (e) => {
@@ -103,7 +103,7 @@ export default function SymptomLogForm() {
         severity: formInput.severity,
         symptomId: formInput.symptomId,
         uid: user.uid,
-        date: todayUTC,
+        date: today,
       }).then(({ id }) => {
         manageLogTriggers({ id }).then(() => router.push(`/dailyJournals`));
       });

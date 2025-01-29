@@ -48,8 +48,7 @@ const getSingleTrigger = (triggerId) =>
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
-      .then(resolve)
+      .then((data) => resolve(data))
       .catch(reject);
   });
 

@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap');
 
 body {
-  background: rgb(255, 255, 255);
+  /* background: rgb(255, 255, 255); */
   color: #7f14e4;
   font-family: "Sofia Sans Semi Condensed", sans-serif;
+  background-color: #ffffff;
+  opacity: 1;
+  background-image:  radial-gradient(#e3d9ff 1.1px, transparent 1.1px), radial-gradient(#e3d9ff 1.1px, #ffffff 1.1px);
+  background-size: 44px 44px;
+  background-position: 0 0,22px 22px;
 }
 
 h1, h2, h3, h3, h4, h5, h6 {
@@ -449,3 +454,4 @@ a:hover {
   font-family: "Sofia Sans Semi Condensed", sans-serif;
   font-size: 22pt !important;
 }
+
